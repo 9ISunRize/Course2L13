@@ -17,20 +17,21 @@ public class ShopController {
 
     private final ShopService shopService;
 
-    public ShopController(ShopServiceImpl shopService) {
+
+    public ShopController(ShopService shopService, onlineStore12.OnlineStore.service.ShopServiceImpl shopServiceImpl) {
         this.shopService = shopService;
     }
 
-
-
     @GetMapping("/add")
     public String addItemToCart(@RequestParam(value = "itemID") List<Integer> itemID) {
-        ShopService.addItemToCart( itemID);
-        return "Items added to the cart: " + itemID;}
+        shopService.addItemToCart(itemID);
+        return "Items added to the cart: " + itemID;
+    }
 
     @GetMapping("/get")
     public List<Integer> getShoppingCart() {
         return shopService.getCart();
     }
 }
+
 
